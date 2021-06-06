@@ -2,9 +2,15 @@ name: Github Actions Debug
 
 on:
   pull-request:
+    branches:
+      - master
+      - develop
+      - feature/abc
   push:
     branches: 
+      - master
       - develop
+      - feature/abc
 
 jobs:
   build:
