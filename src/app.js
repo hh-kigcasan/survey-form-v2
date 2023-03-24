@@ -7,7 +7,7 @@ const Session       = require('express-session')
 const Constants     = require("./config/constants");
 
 /* 
-    DOCU: Session Provider 
+    DOCU: Session Provider //TEST CHANGE
     Set the session settings to be used
 */
 let session_setting = {
