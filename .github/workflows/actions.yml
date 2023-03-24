@@ -4,24 +4,24 @@ on:
   pull_request:
   push:
     branches: 
-      - "**"
+      - '**'
 
 jobs:
   build:
-    name: Running Units Tests
+    name: Running Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-    - name: Compose up the docker
-      run: docker-compose -f "docker-compose.yml" up -d --build
-    - name: List all containers
-      run: docker ps
-    - name: Install dependencies in the container
-      run: docker exec survey-form_app sh -c "npm install"
-    - name: Run tests in the container
-      run: docker exec survey-form_app sh -c "npm test"
-    - name: Compose down the docker
-      run: docker-compose -f "docker-compose.yml" down
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+      - name: Build the Docker images
+        run: docker-compose build
+      - name: Start the Docker containers
+        run: docker-compose up -d
+      - name: List all containers
+        run: docker ps
+      - name: Run tests from the built image
+        run: docker-compose exec main sh -c "npm test"
+      - name: Stop the Docker containers
+        run: docker-compose down
