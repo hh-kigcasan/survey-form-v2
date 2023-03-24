@@ -16,10 +16,10 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v2
     - name: Compose up the docker
-      run: docker-compose -f "./docker/docker-compose.yml" up -d --build
+      run: docker-compose up -d --build
     - name: List all containers
       run: docker ps
     - name: Run tests from the built image
       run: docker run --name survey-form_app survey-form_app sh -c "npm test"
     - name: Compose down the docker
-      run: docker-compose -f "./docker/docker-compose.yml" down
+      run: docker-compose down
