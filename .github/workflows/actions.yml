@@ -20,6 +20,6 @@ jobs:
       - name: Start the Docker containers
         run: docker-compose up -d
       - name: Run tests from the built image
-        run: docker run survey-form sh -c "npm test"
+        run: docker run survey-form-v2 sh -c "npm test"
       - name: Stop the Docker containers
         run: docker-compose down
