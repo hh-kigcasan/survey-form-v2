@@ -19,9 +19,7 @@ jobs:
         run: docker-compose build
       - name: Start the Docker containers
         run: docker-compose up -d
-      - name: List all containers
-        run: docker ps
       - name: Run tests from the built image
-        run: docker-compose exec main sh -c "npm test"
+        run: docker run survey-form sh -c "npm test"
       - name: Stop the Docker containers
         run: docker-compose down
