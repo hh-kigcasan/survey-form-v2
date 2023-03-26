@@ -1,0 +1,25 @@
+name: Github Actions Debug
+
+on:
+  pull_request:
+  push:
+    branches: 
+      - '**'
+
+jobs:
+  build:
+    name: Running Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+      - name: Build the Docker images
+        run: docker-compose build
+      - name: Start the Docker containers
+        run: docker-compose up -d
+      - name: Run tests from the built image
+        run: docker run survey-form-v2 sh -c "npm test"
+      - name: Stop the Docker containers
+        run: docker-compose down
