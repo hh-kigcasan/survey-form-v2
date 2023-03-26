@@ -4,10 +4,11 @@ services:
       build: ./
       image: survey-form-v2:latest
       restart: always
-      command: sh -c "npm start && npm test"
+      command: npm start
       volumes:
         - ./src:/var/www/app/src
         - ./package.json:/var/www/app/package.json
       ports:
         - 3000:3000
         - 9229:9229
+      command: npm test
